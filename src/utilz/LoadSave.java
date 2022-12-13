@@ -12,7 +12,8 @@ import Main.Game;
 public class LoadSave {
 	public static String PLAYER_ATLAS = "Ethan.png";
 	public static String LEVEL_ATLAS = "outside_sprites.png";
-	public static final String LEVEL_ONE_DATA = "level_one_data.png";
+//	public static final String LEVEL_ONE_DATA = "level_one_data.png";
+	public static final String LEVEL_ONE_DATA = "level_one_data_long.png";
 	
 	public static BufferedImage getSpriteAtlas(String filename) {
 		BufferedImage img = null;
@@ -25,9 +26,8 @@ public class LoadSave {
 	}
 	
 	public static int[][] getLevelData(){
-		int[][] lvlData = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
 		BufferedImage img = getSpriteAtlas(LEVEL_ONE_DATA); //ดึงรูปจากโฟลเดอร์ res
-
+		int[][] lvlData = new int[img.getHeight()][img.getWidth()];
 		for (int j = 0; j < img.getHeight(); j++) 
 			for (int i = 0; i < img.getWidth(); i++) {
 				Color color = new Color(img.getRGB(i, j));

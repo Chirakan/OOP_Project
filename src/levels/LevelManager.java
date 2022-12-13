@@ -20,7 +20,7 @@ public class LevelManager {
 
 	private void importOutsideSprites() {
 		BufferedImage img = LoadSave.getSpriteAtlas(LoadSave.LEVEL_ATLAS); //ดึงรูปจากโฟเดอร์ res มาใช้
-		levelSprite = new BufferedImage[48]; // สร้าง Buffer สำหรับเก็บรูป
+		levelSprite = new BufferedImage[48]; // สร้าง Buffer สำหรับเก็บรูป 
 		for (int j = 0; j < 4; j++)
 			for (int i = 0; i < 12; i++) {
 				int index = j * 12 + i; //กำหนก index ในการเก็บรูป จากซ้ายไปขวา บนลงล่าง
@@ -29,11 +29,11 @@ public class LevelManager {
 		
 	}
 
-	public void draw(Graphics g) {
+	public void draw(Graphics g, int lvlOffset) {
 		for (int j = 0; j < Game.TILES_IN_HEIGHT; j++)
-			for (int i = 0; i < Game.TILES_IN_WIDTH; i++) {
+			for (int i = 0; i < levelOne.getLevelData()[0].length; i++) {
 				int index = levelOne.getSpriteIndex(i, j);
-				g.drawImage(levelSprite[index], Game.TILES_SIZE * i, Game.TILES_SIZE * j, Game.TILES_SIZE, Game.TILES_SIZE, null);
+				g.drawImage(levelSprite[index], Game.TILES_SIZE * i - lvlOffset, Game.TILES_SIZE * j, Game.TILES_SIZE, Game.TILES_SIZE, null);
 			}
 	}
 	
