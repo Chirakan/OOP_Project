@@ -50,8 +50,8 @@ public class Menu extends State implements Statemethods{
 
 		for (MenuButton mb : buttons)
 			mb.draw(g);
-		g.setColor(Color.black);
-		g.drawString("MENU", Game.GAME_WIDTH / 2, 200);
+//		g.setColor(Color.black);
+//		g.drawString("MENU", Game.GAME_WIDTH / 2, 200);
 	}
 
 	@Override
