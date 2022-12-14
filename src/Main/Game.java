@@ -3,7 +3,6 @@ package Main;
 import java.awt.Graphics;
 
 import gamestates.Gamestate;
-import gamestates.Gamestate;
 import gamestates.Menu;
 import gamestates.Play;
 

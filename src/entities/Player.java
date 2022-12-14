@@ -18,7 +18,7 @@ public class Player extends Entity{
 	private int playerAction = IDLE;
 	private boolean moving = false, attacking = false;
 	private boolean left, up, right, down, jump;
-	private float playerSpeed = 1.0f;
+	private float playerSpeed = 1.0f * Game.SCALE;
 	private int[][] lvlData;
 	private float xDrawOffset = 15 * Game.SCALE; //จุดที่จะใช้ตีกรอบhitbox แกน x
 	private float yDrawOffset = 32 * Game.SCALE; //จุดที่จะใช้ตีกรอบhitbox แกน y
@@ -35,7 +35,7 @@ public class Player extends Entity{
 	public Player(float x, float y, int width, int height) {
 		super(x, y, width, height);
 		loadAnimations();
-		initHitbox(x, y, (int)20 * Game.SCALE, (int)27 * Game.SCALE); //ขนาดกรอบ hitbox
+		initHitbox(x, y, 20 * Game.SCALE, 27 * Game.SCALE); //ขนาดกรอบ hitbox
 	}
 
 	public void update() {
@@ -46,7 +46,7 @@ public class Player extends Entity{
 
 	public void render(Graphics g, int lvlOffset) {
 		g.drawImage(animations[playerAction][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset, (int) (hitbox.y - yDrawOffset), width, height, null);
-//		this.drawHitbox(g);
+//		this.drawHitbox(g, lvlOffset);
 	}
 
 	private void updateAnimationTick() {

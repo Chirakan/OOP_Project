@@ -5,9 +5,9 @@ import java.awt.event.*;
 import Main.GamePanel;
 import gamestates.Gamestate;
 
-public class Mouseinputs implements MouseListener, MouseMotionListener {
+public class Mouseinputs implements MouseListener, MouseMotionListener{
 	private GamePanel p;
-
+	
 	public Mouseinputs(GamePanel p) {
 		this.p = p;
 	}
@@ -30,7 +30,7 @@ public class Mouseinputs implements MouseListener, MouseMotionListener {
 		default:
 			break;
 		}	
-		}
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -54,7 +54,7 @@ public class Mouseinputs implements MouseListener, MouseMotionListener {
 			break;
 		default:
 			break;
-		}	
+		}
 	}
 
 	@Override
@@ -68,7 +68,8 @@ public class Mouseinputs implements MouseListener, MouseMotionListener {
 			break;
 		default:
 			break;
-		}	
+		}
+
 	}
 
 	@Override

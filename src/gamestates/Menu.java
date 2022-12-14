@@ -1,5 +1,6 @@
 package gamestates;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -9,8 +10,8 @@ import Main.Game;
 import ui.MenuButton;
 import utilz.LoadSave;
 
-public class Menu extends State implements Statemethods {
-
+public class Menu extends State implements Statemethods{
+	
 	private MenuButton[] buttons = new MenuButton[3];
 	private BufferedImage backgroundImg;
 	private int menuX, menuY, menuWidth, menuHeight;
@@ -20,7 +21,7 @@ public class Menu extends State implements Statemethods {
 		loadButtons();
 		loadBackground();
 	}
-
+	
 	private void loadBackground() {
 		backgroundImg = LoadSave.getSpriteAtlas(LoadSave.MENU_BACKGROUND);
 		menuWidth = (int) (backgroundImg.getWidth() * Game.SCALE);
@@ -38,7 +39,6 @@ public class Menu extends State implements Statemethods {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		for (MenuButton mb : buttons) {
 			mb.update();
 		}
@@ -50,12 +50,13 @@ public class Menu extends State implements Statemethods {
 
 		for (MenuButton mb : buttons)
 			mb.draw(g);
+		g.setColor(Color.black);
+		g.drawString("MENU", Game.GAME_WIDTH / 2, 200);
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -65,7 +66,6 @@ public class Menu extends State implements Statemethods {
 				mb.setMousePressed(true);
 			}
 		}
-
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class Menu extends State implements Statemethods {
 		}
 		resetButton();
 	}
-
+	
 	private void resetButton() {
 		for (MenuButton mb : buttons)
 			mb.resetBools();
@@ -94,17 +94,15 @@ public class Menu extends State implements Statemethods {
 			if (isIn(e, mb)) {
 				mb.setMouseOver(true);
 				break;
-
 			}
-
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 			Gamestate.state = Gamestate.PLAYING;
 		}
-
+		
 	}
 
 	@Override
@@ -112,9 +110,9 @@ public class Menu extends State implements Statemethods {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			Gamestate.state = Gamestate.PLAYING;
 		}
-
+		
 	}
-
+	
 	public MenuButton[] getButtons() {
 		return buttons;
 	}
