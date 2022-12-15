@@ -9,6 +9,7 @@ import Main.Game;
 import entities.EnemyManager;
 import entities.Player;
 import levels.LevelManager;
+import ui.PauseOverlay;
 import utilz.LoadSave;
 import static utilz.Constants.Environment.*;
 
@@ -17,7 +18,8 @@ public class Play extends State implements Statemethods{
 	private Player player;
 	private LevelManager levelmanager;
 	private EnemyManager enermymanager;
-	
+	private PauseOverlay pauseOverlay;
+	private boolean paused = true;
 	private int xLvlOffset;
 	private int leftBorder = (int)(0.2 * Game.GAME_WIDTH);
 	private int rightBorder = (int)(0.8 * Game.GAME_WIDTH);
@@ -43,15 +45,22 @@ public class Play extends State implements Statemethods{
 		enermymanager = new EnemyManager(this);
 		player = new Player(150, 200, (int) (64* Game.SCALE), (int) (64 * Game.SCALE));
 		player.loadLvlData(levelmanager.getCurrentLevel().getLevelData());
+		pauseOverlay = new PauseOverlay(this);
+
 	}
 
 	@Override
 	public void update() {
-		levelmanager.update();
-		player.update();
-		enermymanager.update();
-		checkCloseToBorder();
 		
+		
+		if (!paused) {
+			levelmanager.update();
+			player.update();
+			enermymanager.update();
+			checkCloseToBorder();
+		} else {
+			pauseOverlay.update();
+		}
 	}
 
 	private void checkCloseToBorder() {
@@ -72,13 +81,16 @@ public class Play extends State implements Statemethods{
 
 	@Override
 	public void draw(Graphics g) {
+		
 		g.drawImage(backgroundImg, 0, 0, Game.GAME_WIDTH, (int)(Game.GAME_WIDTH), null);
 		drawSand(g);
 		
 		levelmanager.draw(g, xLvlOffset);
+		
 		player.render(g, xLvlOffset);
 		enermymanager.draw(g, xLvlOffset);
-		
+		if (paused)
+			pauseOverlay.draw(g);
 	}
 
 	private void drawSand(Graphics g) {
@@ -101,19 +113,28 @@ public class Play extends State implements Statemethods{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		if(paused) {
+			pauseOverlay.mousePressed(e);
+		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		
+		if(paused) {
+			pauseOverlay.mouseReleased(e);
+		}
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
+		if(paused) {
+			pauseOverlay.mouseMoved(e);
+		}
 		
+	}
+	public void mouseDragged(MouseEvent e) {
+		if (paused)
+			pauseOverlay.mouseDragged(e);
 	}
 
 	@Override
@@ -128,8 +149,9 @@ public class Play extends State implements Statemethods{
 		case KeyEvent.VK_SPACE:
 			player.setJump(true);
 			break;
-		case KeyEvent.VK_BACK_SPACE:
-			Gamestate.state = Gamestate.MENU;
+		case KeyEvent.VK_ESCAPE:
+			paused = !paused;
+			break;
 		}
 		
 	}
@@ -148,7 +170,9 @@ public class Play extends State implements Statemethods{
 			break;
 		}
 	}
-	
+	public void unpauseGame() {
+		paused = false;
+	}
 	public void windowFocusLost() {
 		player.resetDirBooleans();
 	}
