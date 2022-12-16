@@ -13,6 +13,7 @@ import entities.Player;
 import levels.LevelManager;
 import utilz.LoadSave;
 import static utilz.Constants.Environment.*;
+import ui.PauseOverlay;
 
 public class Play extends State implements Statemethods{
 
@@ -20,7 +21,7 @@ public class Play extends State implements Statemethods{
 	private LevelManager levelmanager;
 	private EnemyManager enermymanager;
 	private PauseOverlay pauseOverlay;
-	private boolean paused = true;
+	private boolean paused = false;
 	private int xLvlOffset;
 	private int leftBorder = (int)(0.2 * Game.GAME_WIDTH);
 	private int rightBorder = (int)(0.8 * Game.GAME_WIDTH);
@@ -56,7 +57,7 @@ public class Play extends State implements Statemethods{
 		if (!paused) {
 			levelmanager.update();
 			player.update();
-			enermymanager.update();
+			enermymanager.update(levelmanager.getCurrentLevel().getLevelData(), player);
 			checkCloseToBorder();
 		} else {
 			pauseOverlay.update();
