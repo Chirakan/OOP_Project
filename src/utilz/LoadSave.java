@@ -50,7 +50,6 @@ public class LoadSave {
 					list.add(new Crab(i * Game.TILES_SIZE, j * Game.TILES_SIZE));
 			}
 		return list;
-
 	}
 	
 	public static int[][] getLevelData(){

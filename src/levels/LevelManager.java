@@ -26,7 +26,6 @@ public class LevelManager {
 				int index = j * 12 + i; //กำหนก index ในการเก็บรูป จากซ้ายไปขวา บนลงล่าง
 				levelSprite[index] = img.getSubimage(i * 32, j * 32, 32, 32);
 			}
-		
 	}
 
 	public void draw(Graphics g, int lvlOffset) {

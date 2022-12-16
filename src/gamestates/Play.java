@@ -1,15 +1,16 @@
 package gamestates;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 import Main.Game;
 import entities.EnemyManager;
 import entities.Player;
 import levels.LevelManager;
-import ui.PauseOverlay;
 import utilz.LoadSave;
 import static utilz.Constants.Environment.*;
 
@@ -27,9 +28,7 @@ public class Play extends State implements Statemethods{
 	private int maxTilesOffset = lvlTilesWide - Game.TILES_IN_WIDTH;
 	private int maxLvlOffsetX = maxTilesOffset * Game.TILES_SIZE;
 	
-	private BufferedImage backgroundImg;
-	private BufferedImage sand;
-	private BufferedImage fore;
+	private BufferedImage backgroundImg, sand, fore;
 	
 	public Play(Game game) {
 		super(game);
@@ -46,13 +45,14 @@ public class Play extends State implements Statemethods{
 		player = new Player(150, 200, (int) (64* Game.SCALE), (int) (64 * Game.SCALE));
 		player.loadLvlData(levelmanager.getCurrentLevel().getLevelData());
 		pauseOverlay = new PauseOverlay(this);
-
 	}
 
 	@Override
 	public void update() {
-		
-		
+		levelmanager.update();
+		player.update();
+		enermymanager.update(levelmanager.getCurrentLevel().getLevelData(), player);
+		checkCloseToBorder();
 		if (!paused) {
 			levelmanager.update();
 			player.update();
@@ -81,7 +81,6 @@ public class Play extends State implements Statemethods{
 
 	@Override
 	public void draw(Graphics g) {
-		
 		g.drawImage(backgroundImg, 0, 0, Game.GAME_WIDTH, (int)(Game.GAME_WIDTH), null);
 		drawSand(g);
 		
@@ -130,7 +129,6 @@ public class Play extends State implements Statemethods{
 		if(paused) {
 			pauseOverlay.mouseMoved(e);
 		}
-		
 	}
 	public void mouseDragged(MouseEvent e) {
 		if (paused)
