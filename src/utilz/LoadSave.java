@@ -13,10 +13,10 @@ import entities.Crab;
 import static utilz.Constants.EnemyConstants.*;
 
 public class LoadSave {
-	public static String PLAYER_ATLAS = "Ethan.png";
-	public static String LEVEL_ATLAS = "outside_sprites.png";
+	public static String PLAYER_ATLAS = "aek.png";
+	public static String LEVEL_ATLAS = "sprite.png";
 //	public static final String LEVEL_ONE_DATA = "level_one_data.png";
-	public static final String LEVEL_ONE_DATA = "level_one_data_long.png";
+	public static final String LEVEL_ONE_DATA = "test.png";
 	public static final String MENU_BUTTONS = "button_atlas.png";
 	public static final String MENU_BACKGROUND = "menu_background.png";
 	public static final String PAUSE_BACKGROUND = "pause_menu.png";
@@ -24,10 +24,11 @@ public class LoadSave {
 	public static final String URM_BUTTON = "urm_buttons.png";
 	public static final String VOLUME_BUTTONS = "volume_buttons.png";
 	public static final String PLAYING_BG_IMG = "far.png";
-	public static final String SAND_BG = "sand.png";
-	public static final String FORE_BG = "foregound-merged.png";
-	public static final String CRAB_SPRITE = "Crab.png";
-	
+	public static final String PLAYING_BG_IMG1 = "backsrceen1.png";
+	public static final String PLAYING_BG_IMG2 = "backsrceen2.png";
+	public static final String PLAYING_BG_IMG3 = "backsrceen3.png";
+	public static final String CRAB_SPRITE = "ene.png";
+	public static final String STATUS_BAR = "health_power_bar.png";
 	
 	public static BufferedImage getSpriteAtlas(String filename) {
 		BufferedImage img = null;
@@ -50,6 +51,7 @@ public class LoadSave {
 					list.add(new Crab(i * Game.TILES_SIZE, j * Game.TILES_SIZE));
 			}
 		return list;
+
 	}
 	
 	public static int[][] getLevelData(){

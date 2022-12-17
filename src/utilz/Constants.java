@@ -9,23 +9,49 @@ public class Constants {
 		
 		public static final int IDLE = 0;
 		public static final int RUN = 1;
-		public static final int ATT = 2;
-		public static final int DEAD = 3;
-		
-		public static final int CRAB_WIDTH_DEFAULT = 32;
-		public static final int CRAB_HEIGHT_DEFAULT = 32;
+		public static final int DEAD = 2;
+		public static final int ATT = 3;
+		public static final int HIT = 4;
+
+		public static final int CRAB_WIDTH_DEFAULT = 64;
+		public static final int CRAB_HEIGHT_DEFAULT = 64;
 		
 		public static final int CRAB_WIDTH = (int)(CRAB_WIDTH_DEFAULT * Game.SCALE);
 		public static final int CRAB_HEIGHT = (int)(CRAB_HEIGHT_DEFAULT * Game.SCALE);
+//		public static final int crabbies = (int)(CRAB_HEIGHT_DEFAULT * Game.SCALE);
 		
-		public static final int CRAB_DRAWOFFSET_X = (int)(7 * Game.SCALE);
-		public static final int CRAB_DRAWOFFSET_Y = (int)(1 * Game.SCALE);
+		public static final int CRAB_DRAWOFFSET_X = (int)(26 * Game.SCALE);
+		public static final int CRAB_DRAWOFFSET_Y = (int)(9 * Game.SCALE);
 		
 		public static int GetSpriteAmount(int enemy_type, int enemy_state) {
 			switch(enemy_type) {
 			case CRAB:
+				switch (enemy_state) {
+				case IDLE:
+				case RUN:
+				case HIT:
+				case DEAD:
+					return 4;
+				case ATT:
+					return 5;
+				}
+			}
+			return 0;
+		} public static int getMaxHealth(int enemy_type) {
+			switch(enemy_type) {
+			case CRAB:
+				return 10;
 			default:
-				return 4;
+				return 1;
+			}
+		}
+		
+		public static int getEnemyDmg(int enemy_type) {
+			switch(enemy_type) {
+			case CRAB:
+				return 15;
+			default:
+				return 0;
 			}
 		}
 	}
@@ -80,29 +106,23 @@ public class Constants {
 		public static final int IDLE = 0;
 		public static final int RUN = 1;
 		public static final int ATT_1 = 2;
-		public static final int ATT_2 = 3;
-		public static final int ATT_3 = 4;
-		public static final int JUMP = 5;
-		public static final int HIT = 6;
-		public static final int DYING = 7;
+		public static final int JUMP = 1;
+		public static final int HIT = 3;
+		public static final int DEAD = 4;
 		
 		public static int GetSpriteAmount(int player_action) { //คืนค่าจำนวนเฟรมทั้งหมดในแต่ละ action 
 			switch (player_action) {
 			case RUN:
 				return 8;
 			case IDLE:
-				return 13;
+				return 7;
 			case HIT:
 				return 4;
-			case JUMP:
-				return 6;
-			case DYING:
-				return 7;
+			case DEAD:
+				return 8;
 			case ATT_1:
-			case ATT_2:
-			case ATT_3:
 			default:
-				return 10;
+				return 6;
 			}
 		}
 	}

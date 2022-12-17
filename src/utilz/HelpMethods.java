@@ -24,17 +24,13 @@ public class HelpMethods {
 		float xIndex = x / Game.TILES_SIZE;
 		float yIndex = y / Game.TILES_SIZE;
 
-		int value = lvlData[(int) yIndex][(int) xIndex];
-
-		if (value >= 48 || value < 0 || value != 11)
-			return true;
-		return false;
+		return IsTileSolid((int)xIndex, (int)yIndex, lvlData);
 	}
-
+	
 	public static boolean IsTileSolid(int xTile, int yTile, int[][] lvlData) {
 		int value = lvlData[yTile][xTile];
 
-		if (value >= 48 || value < 0 || value != 11)
+		if (value >= 48 || value < 0 || value != 46)
 			return true;
 		return false;
 	}
@@ -71,7 +67,7 @@ public class HelpMethods {
 		return true;
 
 	}
-
+	
 	public static boolean IsFloor(Rectangle2D.Float hitbox, float xSpeed, int[][] lvlData) {
 		return IsSolid(hitbox.x + xSpeed, hitbox.y + hitbox.height + 1, lvlData);
 	}
