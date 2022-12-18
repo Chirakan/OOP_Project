@@ -1,8 +1,14 @@
 package utilz;
 
+import static utilz.Constants.EnemyConstants.CRAB;
+
+import java.awt.Color;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import Main.Game;
+import entities.Crab;
 
 public class HelpMethods {
 	public static boolean CanMoveHere(float x, float y, float width, float height, int[][] lvlData) {
@@ -90,5 +96,32 @@ public class HelpMethods {
 			return IsAllTilesWalkable(secondXTile, firstXTile, yTile, lvlData);
 		else
 			return IsAllTilesWalkable(firstXTile, secondXTile, yTile, lvlData);
+	}
+	
+	
+	public static int[][] GetLevelData(BufferedImage img){
+		int[][] lvlData = new int[img.getHeight()][img.getWidth()];
+		for (int j = 0; j < img.getHeight(); j++) 
+			for (int i = 0; i < img.getWidth(); i++) {
+				Color color = new Color(img.getRGB(i, j));
+				int value = color.getRed();
+				if (value >= 48) // หากจำนวน sprite เกิน ให้รีเซ็ตค่า
+					value = 0;
+				lvlData[j][i] = value; //เก็บค่าสีไว้ใน array
+			}
+		return lvlData;
+ 
+	}
+	public static ArrayList<Crab> GetCrabs(BufferedImage img) {
+		ArrayList<Crab> list = new ArrayList<>();
+		for (int j = 0; j < img.getHeight(); j++)
+			for (int i = 0; i < img.getWidth(); i++) {
+				Color color = new Color(img.getRGB(i, j));
+				int value = color.getGreen();
+				if (value == CRAB)
+					list.add(new Crab(i * Game.TILES_SIZE, j * Game.TILES_SIZE));
+			}
+		return list;
+
 	}
 }
