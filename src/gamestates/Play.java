@@ -33,7 +33,6 @@ public class Play extends State implements Statemethods{
 	private int maxLvlOffsetX = maxTilesOffset * Game.TILES_SIZE;
 	
 	private BufferedImage backgroundImg;
-	private Random rnd = new Random();
 	
 	private boolean gameOver;
 	
@@ -47,7 +46,7 @@ public class Play extends State implements Statemethods{
 	private void initClasses() {
 		levelmanager = new LevelManager(game);
 		enermymanager = new EnemyManager(this);
-		player = new Player(150, 200, (int) (64* Game.SCALE * 1.5), (int) (64 * Game.SCALE * 1.4), this);
+		player = new Player(150, 200, (int) (40* Game.SCALE * 1.5), (int) (64 * Game.SCALE * 1.1), this);
 		player.loadLvlData(levelmanager.getCurrentLevel().getLevelData());
 		pauseOverlay = new PauseOverlay(this);
 		gameOverOverlay = new GameOverOverlay(this);

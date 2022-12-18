@@ -17,13 +17,13 @@ public class Crab extends Enemy{
 
 	public Crab(float x, float y) {
 		super(x, y, CRAB_WIDTH, CRAB_HEIGHT, CRAB);
-		initHitbox(x, y, (int)(22 * Game.SCALE), (int)(19 * Game.SCALE));
+		initHitbox(x, y, (int)(35 * Game.SCALE), (int)(19 * Game.SCALE));
 		initAttackBox();
 	}
 	
 	private void initAttackBox() {
-		attackBox = new Rectangle2D.Float(x, y, (int)(82 * Game.SCALE), (int)(19 * Game.SCALE));
-		attackBoxOffsetX = (int)(Game.SCALE * 30);
+		attackBox = new Rectangle2D.Float(x, y, (int)(35 * Game.SCALE), (int)(19 * Game.SCALE));
+		attackBoxOffsetX = (int)(Game.SCALE * 25);
 	}
 
 	public void update(int[][] lvlData, Player player) {
@@ -59,8 +59,6 @@ public class Crab extends Enemy{
 			case ATT:
 				if (aniIndex == 0)
 					attackChecked = false;
-
-				// Changed the name for checkEnemyHit to checkPlayerHit
 				if (aniIndex == 3 && !attackChecked)
 					checkPlayerHit(attackBox, player);
 				break;

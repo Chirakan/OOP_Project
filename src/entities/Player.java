@@ -18,7 +18,7 @@ public class Player extends Entity{
 	private int playerAction = IDLE;
 	private boolean moving = false, attacking = false;
 	private boolean left, up, right, down, jump;
-	private float playerSpeed = 0.750f * Game.SCALE;
+	private float playerSpeed = 0.75f * Game.SCALE;
 	private int[][] lvlData;
 	private float xDrawOffset = 15 * Game.SCALE; //จุดที่จะใช้ตีกรอบhitbox แกน x
 	private float yDrawOffset = 32 * Game.SCALE; //จุดที่จะใช้ตีกรอบhitbox แกน y
@@ -43,7 +43,7 @@ public class Player extends Entity{
 	private int healthBarXStart = (int) (34 * Game.SCALE);
 	private int healthBarYStart = (int) (14 * Game.SCALE);
 
-	private int maxHealth = 10;
+	private int maxHealth = 100;
 	private int currentHealth = maxHealth;
 	private int healthWidth = healthBarWidth;
 
@@ -65,7 +65,7 @@ public class Player extends Entity{
 	}
 	
 	private void initAttackBox() {
-		attackBox = new Rectangle2D.Float(x, y, (int) (20 * Game.SCALE), (int) (20 * Game.SCALE));
+		attackBox = new Rectangle2D.Float(x, y, (int) (25 * Game.SCALE), (int) (20 * Game.SCALE));
 	}
 
 	public void update() {
@@ -95,9 +95,9 @@ public class Player extends Entity{
 
 	private void updateAttackBox() {
 		if (right)
-			attackBox.x = hitbox.x + hitbox.width + (int) (Game.SCALE * 10);
+			attackBox.x = hitbox.x + hitbox.width + (int) (Game.SCALE * 5);
 		else if (left)
-			attackBox.x = hitbox.x - hitbox.width - (int) (Game.SCALE * 10);
+			attackBox.x = hitbox.x - hitbox.width - (int) (Game.SCALE * 5);
 
 		attackBox.y = hitbox.y + (Game.SCALE * 10);
 	}
@@ -158,7 +158,6 @@ public class Player extends Entity{
 
 		if (attacking) {
 			playerAction = ATT_1;
-			
 			if (startAni != ATT_1) {
 				aniIndex = 1;
 				aniTick = 0;

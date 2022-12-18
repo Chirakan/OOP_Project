@@ -42,7 +42,7 @@ public class Constants {
 			case CRAB:
 				return 10;
 			default:
-				return 1;
+				return 10;
 			}
 		}
 		
