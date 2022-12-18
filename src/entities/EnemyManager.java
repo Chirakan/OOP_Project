@@ -47,7 +47,7 @@ public class EnemyManager {
 	public void checkEnemyHit(Rectangle2D.Float attackBox) {
 		for(Crab c: crabbies) {
 			if(c.isActive())
-				if(attackBox.intersects(c.getHitbox()));{
+				if(attackBox.intersects(c.getHitbox())){
 					c.hurt(10);
 					return;
 				}
