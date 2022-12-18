@@ -49,7 +49,7 @@ public class Constants {
 		public static int getEnemyDmg(int enemy_type) {
 			switch(enemy_type) {
 			case CRAB:
-				return 15;
+				return 1;
 			default:
 				return 0;
 			}

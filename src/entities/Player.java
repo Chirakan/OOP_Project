@@ -43,7 +43,7 @@ public class Player extends Entity{
 	private int healthBarXStart = (int) (34 * Game.SCALE);
 	private int healthBarYStart = (int) (14 * Game.SCALE);
 
-	private int maxHealth = 100;
+	private int maxHealth = 10;
 	private int currentHealth = maxHealth;
 	private int healthWidth = healthBarWidth;
 
@@ -112,13 +112,13 @@ public class Player extends Entity{
 				(int) (hitbox.y - yDrawOffset), 
 				width * flipW, height, null);
 		this.drawHitbox(g, lvlOffset);
-		drawAttackBox(g, lvlOffset);
+//		drawAttackBox(g, lvlOffset);
 		drawUI(g);
 	}
 	
 	private void drawAttackBox(Graphics g, int lvlOffsetX) {
-		g.setColor(Color.red);
-		g.drawRect((int) attackBox.x - lvlOffsetX, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
+//		g.setColor(Color.red);
+//		g.drawRect((int) attackBox.x - lvlOffsetX, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
 
 	}
 
@@ -247,7 +247,7 @@ public class Player extends Entity{
 	}
 	
 	public void changeHealth(int value) {
-		currentHealth += value;
+		currentHealth -= value;
 		
 		if(currentHealth <= 0) {
 			currentHealth = 0;

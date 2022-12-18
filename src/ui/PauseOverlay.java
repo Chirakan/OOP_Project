@@ -28,7 +28,7 @@ public class PauseOverlay {
 
 	private void createVolumeButton() {
 		int vX = (int) (309 * Game.SCALE);
-		int vY = 	(int) (278 * Game.SCALE);
+		int vY = (int) (278 * Game.SCALE);
 		volumeButton = new VolumeButton(vX, vY, SLIDER_WIDTH, VOLUME_HEIGHT);
 	}
 	
@@ -86,8 +86,10 @@ public class PauseOverlay {
 	}
 
 	public void mouseDragged(MouseEvent e) {
+		
 		if (volumeButton.isMousePressed()) {
 			volumeButton.changeX(e.getX());
+			
 		}
 	}
 
@@ -102,8 +104,10 @@ public class PauseOverlay {
 			replayB.setMousePressed(true);
 		else if (isIn(e, unpauseB))
 			unpauseB.setMousePressed(true);
-		else if (isIn(e, volumeButton))
+		else if (isIn(e, volumeButton)) {
 			volumeButton.setMousePressed(true);
+		}
+			
 	}
 
 	public void mouseReleased(MouseEvent e) {
