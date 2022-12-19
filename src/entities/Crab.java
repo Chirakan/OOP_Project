@@ -17,7 +17,7 @@ public class Crab extends Enemy{
 
 	public Crab(float x, float y) {
 		super(x, y, CRAB_WIDTH, CRAB_HEIGHT, CRAB);
-		initHitbox(x, y, (int)(32 * Game.SCALE), (int)(19 * Game.SCALE));
+		initHitbox(x, y, (int)(35 * Game.SCALE), (int)(19 * Game.SCALE));
 		initAttackBox();
 	}
 	
@@ -53,6 +53,7 @@ public class Crab extends Enemy{
 					if (isPlayerCloseForAttack(player))
 						newState(ATT);
 				}
+
 				move(lvlData);
 				break;
 			case ATT:
@@ -60,7 +61,6 @@ public class Crab extends Enemy{
 					attackChecked = false;
 				if (aniIndex == 3 && !attackChecked)
 					checkPlayerHit(attackBox, player);
-				
 				break;
 			case HIT:
 				

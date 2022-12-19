@@ -12,6 +12,7 @@ import Main.Game;
 import entities.EnemyManager;
 import entities.Player;
 import levels.LevelManager;
+import obj.ObjectManager;
 import ui.GameOverOverlay;
 import ui.LevelCompletedOverlay;
 import ui.PauseOverlay;
@@ -22,8 +23,8 @@ public class Play extends State implements Statemethods{
 
 	private Player player;
 	private LevelManager levelmanager;
-	
 	private EnemyManager enermymanager;
+	private ObjectManager objmanager;
 	private PauseOverlay pauseOverlay;
 	private GameOverOverlay gameOverOverlay;
 	private LevelCompletedOverlay levelCompletedOverlay;
@@ -39,6 +40,7 @@ public class Play extends State implements Statemethods{
 	private boolean gameOver;
 	private boolean lvlCompleted = false;
 	private boolean playerDying = false;
+	
 	public Play(Game game) {
 		super(game);
 		initClasses();
@@ -61,6 +63,7 @@ public class Play extends State implements Statemethods{
 	private void loadStartLevel() {
 		enermymanager.loadEnemies(levelmanager.getCurrentLevel());
 		backgroundImg = LoadSave.getSpriteAtlas(LoadSave.PLAYING_BG_IMG1);
+		objmanager.loadObjects(levelmanager.getCurrentLevel());
 	}
 	private void calcLvlOffset() {
 		maxLvlOffsetX = levelmanager.getCurrentLevel().getLvlOffset();		
@@ -70,6 +73,7 @@ public class Play extends State implements Statemethods{
 	private void initClasses() {
 		levelmanager = new LevelManager(game);
 		enermymanager = new EnemyManager(this);
+		objmanager = new ObjectManager(this);
 		player = new Player(150, 200, (int) (40* Game.SCALE * 1.5), (int) (64 * Game.SCALE * 1.1), this);
 		player.loadLvlData(levelmanager.getCurrentLevel().getLevelData());
 		pauseOverlay = new PauseOverlay(this);
@@ -121,6 +125,7 @@ public class Play extends State implements Statemethods{
 		
 		player.render(g, xLvlOffset);
 		enermymanager.draw(g, xLvlOffset);
+		objmanager.draw(g, xLvlOffset);
 		if (paused) {
 			g.setColor(new Color(0, 0, 0, 150));
 			g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
@@ -145,10 +150,12 @@ public class Play extends State implements Statemethods{
 		enermymanager.resetAllEnemies();
 	}
 	
-	
-	
 	public void checkEnemyHit(Rectangle2D.Float attackBox) {
 		enermymanager.checkEnemyHit(attackBox);
+	}
+	
+	public void checkPotionTouched(Rectangle2D.Float hitbox) {
+		objmanager.checkObjectTouched(hitbox);
 	}
 
 	@Override
@@ -163,7 +170,7 @@ public class Play extends State implements Statemethods{
 		if (!gameOver) {
 			if (paused)
 				pauseOverlay.mousePressed(e);
-			else if (lvlCompleted)
+			else if(lvlCompleted)
 				levelCompletedOverlay.mousePressed(e);
 		} else
 			gameOverOverlay.mousePressed(e);
@@ -174,7 +181,7 @@ public class Play extends State implements Statemethods{
 		if (!gameOver) {
 			if (paused)
 				pauseOverlay.mouseReleased(e);
-			else if (lvlCompleted)
+			else if(lvlCompleted)
 				levelCompletedOverlay.mouseReleased(e);
 		} else
 			gameOverOverlay.mouseReleased(e);
@@ -187,10 +194,10 @@ public class Play extends State implements Statemethods{
 				pauseOverlay.mouseMoved(e);
 			else if(lvlCompleted)
 				levelCompletedOverlay.mouseMoved(e);
-		}else
+		} else
 			gameOverOverlay.mouseMoved(e);
 	}
-
+	
 	public void mouseDragged(MouseEvent e) {
 		if (!gameOver) 
 			if (paused)
@@ -260,6 +267,10 @@ public class Play extends State implements Statemethods{
 		this.enermymanager = enermymanager;
 	}
 	
+	public ObjectManager getObjManager() {
+		return this.objmanager;
+	}
+	
 	public int getMaxLvlOffsetX() {
 		return maxLvlOffsetX;
 	}
@@ -274,8 +285,8 @@ public class Play extends State implements Statemethods{
 	public void setGameOver(boolean gameOver) {
 		this.gameOver = gameOver;
 	}
+	
 	public void setPlayerDying(boolean playerDying) {
 		this.playerDying = playerDying;
-		
 	}
 }

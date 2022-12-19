@@ -43,7 +43,7 @@ public class Player extends Entity{
 	private int healthBarXStart = (int) (34 * Game.SCALE);
 	private int healthBarYStart = (int) (14 * Game.SCALE);
 
-	private int maxHealth = 10;
+	private int maxHealth = 100;
 	private int currentHealth = maxHealth;
 	private int healthWidth = healthBarWidth;
 
@@ -71,7 +71,7 @@ public class Player extends Entity{
 	public void update() {
 		updateHealthBar();
 
- 		if (currentHealth <= 0) {
+		if (currentHealth <= 0) {
  			if(playerAction != DEAD) {
  				playerAction = DEAD;
  				aniTick = 0;
@@ -82,21 +82,25 @@ public class Player extends Entity{
  			}else {
  				updateAnimationTick();
  			}
- 			
-
-			
 			return;
 		}
 
 		updateAttackBox();
 
 		updatePos();
+		if (moving)
+			checkPotionTouched();
 		if (attacking)
 			checkAttack();
 		updateAnimationTick();
 		setAnimation();
 	}
 	
+	private void checkPotionTouched() {
+		playing.checkPotionTouched(hitbox);
+		
+	}
+
 	private void checkAttack() {
 		if (attackChecked || aniIndex != 1)
 			return;

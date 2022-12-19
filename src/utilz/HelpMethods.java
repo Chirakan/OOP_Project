@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import Main.Game;
 import entities.Crab;
+import obj.Potion;
+import static utilz.Constants.ObjectConstants.*;
 
 public class HelpMethods {
 	public static boolean CanMoveHere(float x, float y, float width, float height, int[][] lvlData) {
@@ -113,6 +115,7 @@ public class HelpMethods {
 		return lvlData;
  
 	}
+	
 	public static ArrayList<Crab> GetCrabs(BufferedImage img) {
 		ArrayList<Crab> list = new ArrayList<>();
 		for (int j = 0; j < img.getHeight(); j++)
@@ -126,5 +129,16 @@ public class HelpMethods {
 
 	}
 	
+	public static ArrayList<Potion> GetPotions(BufferedImage img) {
+		ArrayList<Potion> list = new ArrayList<>();
+		for (int j = 0; j < img.getHeight(); j++)
+			for (int i = 0; i < img.getWidth(); i++) {
+				Color color = new Color(img.getRGB(i, j));
+				int value = color.getGreen();
+				if (value == RED_POTION)
+					list.add(new Potion(i * Game.TILES_SIZE, j * Game.TILES_SIZE, value));
+			}
+		return list;
 
+	}
 }

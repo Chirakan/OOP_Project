@@ -4,6 +4,28 @@ import Main.Game;
 
 public class Constants {
 	
+	public static final float GRAVITY = 0.03f * Game.SCALE;
+	public static final int ANI_SPEED = 35;
+	
+	public static class ObjectConstants {
+		public static final int RED_POTION = 0;
+		
+		public static final int RED_POTION_VALUE = 15;
+		
+		public static final int POTION_WIDTH_DEFAULT = 64;
+		public static final int POTION_HEIGHT_DEFAULT = 64;
+		public static final int POTION_WIDTH = (int) (Game.SCALE * POTION_WIDTH_DEFAULT);
+		public static final int POTION_HEIGHT = (int) (Game.SCALE * POTION_HEIGHT_DEFAULT);
+
+		public static int GetSpriteAmount(int object_type) {
+			switch (object_type) {
+			case RED_POTION:
+				return 4;
+			}
+			return 1;
+		}
+	}
+	
 	public static class EnemyConstants{
 		public static final int CRAB = 0;
 		
@@ -49,7 +71,7 @@ public class Constants {
 		public static int getEnemyDmg(int enemy_type) {
 			switch(enemy_type) {
 			case CRAB:
-				return 1;
+				return 15;
 			default:
 				return 0;
 			}
