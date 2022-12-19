@@ -32,14 +32,15 @@ public class LoadSave {
 	
 	// UI INTERFACE
 	public static final String MENU_BACKGROUND = "m3.png";
-	public static final String PAUSE_BACKGROUND = "pause_menu.png";
+	public static final String PAUSE_BACKGROUND = "m6.png";
 	public static final String SOUND_BUTTON = "b3.png";
 	public static final String URM_BUTTON = "b4.png";
 	public static final String VOLUME_BUTTONS = "b2.png";
-	public static final String COMPLETED_IMG = "completed_sprite.png";
-	public static final String MENU_BUTTONS = "button_atlas.png";
+	public static final String COMPLETED_IMG = "m2.png";
+	public static final String MENU_BUTTONS = "b5.png";
 	public static final String DEATH_SCREEN = "m1.png";
-	
+	public static final String OPTION_BACKGROUND = "m5.png";
+
 	public static final String POTION_ATLAS = "heal.png";
 	public static final String TRAP_ATLAS = "trap.png";
 	public static final String OCTOPUS_ATLAS = "muak.png";

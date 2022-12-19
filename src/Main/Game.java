@@ -2,9 +2,12 @@ package Main;
 
 import java.awt.Graphics;
 
+import gamestates.GameOption;
 import gamestates.Gamestate;
 import gamestates.Menu;
 import gamestates.Play;
+import ui.AudioOptions;
+
 import utilz.LoadSave;
 
 public class Game implements Runnable{
@@ -16,6 +19,10 @@ public class Game implements Runnable{
 	
 	private Play playing;
 	private Menu menu;
+	private GameOption option;
+	private AudioOptions audioOptions;
+
+
 
 	public final static int TILES_DEFAULT_SIZE = 32;
 	public final static float SCALE = 1.75f;
@@ -44,8 +51,10 @@ public class Game implements Runnable{
 	}
 	
 	private void initClasses() {
+		audioOptions = new AudioOptions();
 		menu = new Menu(this);
 		playing = new Play(this);
+		option = new GameOption(this);
 	}
 	
 	private void startGameLoop() {
@@ -55,31 +64,36 @@ public class Game implements Runnable{
 	
 	public void update() {
 		switch(Gamestate.state) {
-		case MENU:
-			menu.update();
-			break;
-		case PLAYING:
-			playing.update();
-			break;
-		case OPTIONS:
-		case QUIT:
-		default:
-			System.exit(0);
-			break;
-		}
+			case MENU:
+				menu.update();
+				break;
+			case PLAYING:
+				playing.update();
+				break;
+			case OPTIONS:
+				option.update();
+				break;
+			case QUIT:
+			default:
+				System.exit(0);
+				break;
+			}
 	}
 	
 	public void render(Graphics g) {
 		switch(Gamestate.state) {
-		case MENU:
-			menu.draw(g);
-			break;
-		case PLAYING:
-			playing.draw(g);
-			break;
-		default:
-			break;
-		}
+			case MENU:
+				menu.draw(g);
+				break;
+			case PLAYING:
+				playing.draw(g);
+				break;
+			case OPTIONS:
+				option.draw(g);
+				break;
+			default:
+				break;
+			}
 	}
 
 	@Override
@@ -138,5 +152,11 @@ public class Game implements Runnable{
 	public Play getPlay() {
 		return playing;
 	}
-
+	public AudioOptions getAudioOptions() {
+		return audioOptions;
+	}
+	public GameOption getOption() {
+		return option;
+	}
 }
+
