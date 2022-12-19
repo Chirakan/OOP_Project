@@ -113,9 +113,7 @@ public abstract class Enemy extends Entity{
 			if (attackBox.intersects(player.hitbox)) {
 				player.changeHealth(getEnemyDmg(enemyType));
 			}
-				
 			attackChecked = true;
-
 		}
 	
 	protected void updateAnimationTick() {

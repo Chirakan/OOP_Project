@@ -44,8 +44,8 @@ public class EnemyManager {
 		for(Crab c : crabbies) {
 			if(c.isActive())
 				g.drawImage(crabarr[c.getEnemyState()][c.getAniIndex()], (int)c.getHitbox().x - xLvlOffset - CRAB_DRAWOFFSET_X + c.flipX(), (int)c.getHitbox().y - CRAB_DRAWOFFSET_Y, CRAB_WIDTH * c.flipW(), CRAB_HEIGHT - 25, null);
-			c.drawHitbox(g, xLvlOffset);
-			c.drawAttackBox(g, xLvlOffset);
+			// c.drawHitbox(g, xLvlOffset);
+			// c.drawAttackBox(g, xLvlOffset);
 		}
 	}
 	
