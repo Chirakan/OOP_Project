@@ -139,6 +139,7 @@ public class Play extends State implements Statemethods{
 	public void resetAll() {
 		gameOver = false;
 		paused = false;
+		playerDying = false;
 		lvlCompleted = false;
 		player.resetAll();
 		enermymanager.resetAllEnemies();
@@ -272,5 +273,9 @@ public class Play extends State implements Statemethods{
 
 	public void setGameOver(boolean gameOver) {
 		this.gameOver = gameOver;
+	}
+	public void setPlayerDying(boolean playerDying) {
+		this.playerDying = playerDying;
+		
 	}
 }
