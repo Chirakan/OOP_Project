@@ -22,19 +22,27 @@ public class LoadSave {
 //	public static final String LEVEL_ONE_DATA = "level_1.png";
 //	public static final String LEVEL_TWO_DATA = "level_2.png";
 //	public static final String LEVEL_THREE_DATA = "level_3.png";
-	public static final String MENU_BUTTONS = "button_atlas.png";
+	
+	
+	public static final String PLAYING_BG_IMG = "far.png";
+	public static final String PLAYING_BG_IMG1 = "backsrceen1.png";
+	public static final String PLAYING_BG_IMG2 = "backsrceen2.png";
+	public static final String PLAYING_BG_IMG3 = "backsrceen3.png";
+	
+	public static final String CRAB_SPRITE = "ene.png";
+	public static final String STATUS_BAR = "health_power_bar.png";
+	
+	
+	
+	// UI INTERFACE
 	public static final String MENU_BACKGROUND = "menu_background.png";
 	public static final String PAUSE_BACKGROUND = "pause_menu.png";
 	public static final String SOUND_BUTTON = "sound_button.png";
 	public static final String URM_BUTTON = "urm_buttons.png";
 	public static final String VOLUME_BUTTONS = "volume_buttons.png";
-	public static final String PLAYING_BG_IMG = "far.png";
-	public static final String PLAYING_BG_IMG1 = "backsrceen1.png";
-	public static final String PLAYING_BG_IMG2 = "backsrceen2.png";
-	public static final String PLAYING_BG_IMG3 = "backsrceen3.png";
-	public static final String CRAB_SPRITE = "ene.png";
-	public static final String STATUS_BAR = "health_power_bar.png";
 	public static final String COMPLETED_IMG = "completed_sprite.png";
+	public static final String MENU_BUTTONS = "button_atlas.png";
+	public static final String DEATH_SCREEN = "death_screen.png";
 	
 	public static BufferedImage getSpriteAtlas(String filename) {
 		BufferedImage img = null;

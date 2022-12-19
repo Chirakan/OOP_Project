@@ -38,7 +38,7 @@ public class Play extends State implements Statemethods{
 	
 	private boolean gameOver;
 	private boolean lvlCompleted = false;
-	
+	private boolean playerDying = false;
 	public Play(Game game) {
 		super(game);
 		initClasses();
@@ -83,7 +83,12 @@ public class Play extends State implements Statemethods{
 			pauseOverlay.update();
 		} else if (lvlCompleted) {
 			levelCompletedOverlay.update();
-		} else if (!gameOver) {
+		}else if(gameOver) {
+			gameOverOverlay.update();
+		}else if(playerDying){
+			player.update();
+		}
+		else{
 			levelmanager.update();
 			player.update();
 			enermymanager.update(levelmanager.getCurrentLevel().getLevelData(), player);
@@ -157,9 +162,10 @@ public class Play extends State implements Statemethods{
 		if (!gameOver) {
 			if (paused)
 				pauseOverlay.mousePressed(e);
-			else if(lvlCompleted)
+			else if (lvlCompleted)
 				levelCompletedOverlay.mousePressed(e);
-		}
+		} else
+			gameOverOverlay.mousePressed(e);
 	}
 
 	@Override
@@ -167,9 +173,10 @@ public class Play extends State implements Statemethods{
 		if (!gameOver) {
 			if (paused)
 				pauseOverlay.mouseReleased(e);
-			else if(lvlCompleted)
+			else if (lvlCompleted)
 				levelCompletedOverlay.mouseReleased(e);
-		}
+		} else
+			gameOverOverlay.mouseReleased(e);
 	}
 
 	@Override
@@ -179,9 +186,10 @@ public class Play extends State implements Statemethods{
 				pauseOverlay.mouseMoved(e);
 			else if(lvlCompleted)
 				levelCompletedOverlay.mouseMoved(e);
-		}
+		}else
+			gameOverOverlay.mouseMoved(e);
 	}
-	
+
 	public void mouseDragged(MouseEvent e) {
 		if (!gameOver) 
 			if (paused)
