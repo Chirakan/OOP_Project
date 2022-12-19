@@ -247,7 +247,7 @@ public class Player extends Entity{
 	}
 	
 	public void changeHealth(int value) {
-		currentHealth -= value;
+		currentHealth += value;
 		
 		if(currentHealth <= 0) {
 			currentHealth = 0;
