@@ -22,7 +22,7 @@ public class Crab extends Enemy{
 	}
 	
 	private void initAttackBox() {
-		attackBox = new Rectangle2D.Float(x, y, (int)(35 * Game.SCALE), (int)(19 * Game.SCALE));
+		attackBox = new Rectangle2D.Float(x, y, (int)(60 * Game.SCALE), (int)(19 * Game.SCALE));
 		attackBoxOffsetX = (int)(Game.SCALE * 25);
 	}
 
