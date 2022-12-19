@@ -41,6 +41,7 @@ public class LoadSave {
 	public static final String DEATH_SCREEN = "death_screen.png";
 	
 	public static final String POTION_ATLAS = "heal.png";
+	public static final String TRAP_ATLAS = "trap.png";
 	
 	public static BufferedImage getSpriteAtlas(String filename) {
 		BufferedImage img = null;

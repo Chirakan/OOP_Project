@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import Main.Game;
 import entities.Crab;
 import obj.Potion;
+import obj.Spike;
 import utilz.HelpMethods;
 
 import static utilz.HelpMethods.GetLevelData;
@@ -16,6 +17,7 @@ public class Level {
 	private int[][] lvlData;
 	private ArrayList<Crab> crabs;
 	private ArrayList<Potion> potions;
+	private ArrayList<Spike> spikes;
 	private int lvlTilesWide;
 	private int maxTilesOffset;
 	private int maxLvlOffsetX;
@@ -26,10 +28,15 @@ public class Level {
 		createLevelData();
 		createEnemies();
 		createPotions();
-		createBG();
+		createSpikes();
+//		createBG();
 		calcLvlOffsets();
 	}
 	
+	private void createSpikes() {
+		spikes = HelpMethods.GetSpikes(img);
+	}
+
 	private void createPotions() {
 		potions = HelpMethods.GetPotions(img);
 	}
@@ -71,5 +78,9 @@ public class Level {
 	
 	public ArrayList<Potion> getPotions() {
 		return potions;
+	}
+	
+	public ArrayList<Spike> getSpikes() {
+		return spikes;
 	}
 }

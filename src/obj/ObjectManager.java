@@ -5,6 +5,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import entities.Player;
 import gamestates.Play;
 import levels.Level;
 import utilz.LoadSave;
@@ -14,11 +15,19 @@ public class ObjectManager {
 
 	private Play playing;
 	private BufferedImage[] potionImgs;
+	private BufferedImage[] spikeImgs;
 	private ArrayList<Potion> potions;
+	private ArrayList<Spike> spikes;
 	
 	public ObjectManager(Play playing) {
 		this.playing = playing;
 		loadImgs();
+	}
+	
+	public void checkSpikesTouched(Player p) {
+		for (Spike s : spikes)
+			if (s.getHitbox().intersects(p.getHitbox()))
+				p.kill();
 	}
 	
 	public void checkObjectTouched(Rectangle2D.Float hitbox) {
@@ -37,7 +46,8 @@ public class ObjectManager {
 	}
 	
 	public void loadObjects(Level newLevel) {
-		potions = newLevel.getPotions();
+		potions = new ArrayList<>(newLevel.getPotions());
+		spikes = newLevel.getSpikes();
 	}
 
 	private void loadImgs() {
@@ -46,16 +56,35 @@ public class ObjectManager {
 		for(int i = 0; i < potionImgs.length; i++)
 			potionImgs[i] = potionSprite.getSubimage(64 * i, 0, 64, 64);
 		
+		BufferedImage spikeSprite = LoadSave.getSpriteAtlas(LoadSave.TRAP_ATLAS);
+		spikeImgs = new BufferedImage[4];
+		for(int i = 0; i < spikeImgs.length; i++)
+			spikeImgs[i] = potionSprite.getSubimage(64 * i, 0, 64, 64);
+		
 	}
 	
 	public void update() {
 		for(Potion p: potions)
 			if(p.isActive())
 				p.update();
+		
+		for(Spike s: spikes)
+			s.update();
 	}
 	
 	public void draw(Graphics g, int xLvlOffset) {
 		drawPotions(g, xLvlOffset);
+		drawTrap(g, xLvlOffset);
+	}
+
+	private void drawTrap(Graphics g, int xLvlOffset) {
+		for (Spike s : spikes) {
+			g.drawImage(potionImgs[s.getAniIndex()], (int) (s.getHitbox().x - s.getxDrawOffset() - xLvlOffset), 
+					(int) (s.getHitbox().y - s.getyDrawOffset()), 
+					(int)(SPIKE_WIDTH * 0.5), 
+					(int)(SPIKE_HEIGHT * 0.5),null);
+		}
+		
 	}
 
 	private void drawPotions(Graphics g, int xLvlOffset) {
@@ -66,6 +95,11 @@ public class ObjectManager {
 						(int)(POTION_WIDTH * 0.5), 
 						(int)(POTION_HEIGHT * 0.5),null);
 			}
-		
+	}
+	
+	public void resetAllObjects() {
+		loadObjects(playing.getLevelManager().getCurrentLevel());
+		for (Potion p : potions)
+			p.reset();
 	}
 }
