@@ -23,17 +23,16 @@ public class GameObject {
 		this.objType = objType;
 	}
 	
-	protected void initHitbox(int width, int height) {
-		hitbox = new Rectangle2D.Float(x, y, (int) (width * Game.SCALE), (int) (height * Game.SCALE));
-	}
-	
 	protected void updateAnimationTick() {
 		aniTick++;
-		if (aniTick >= 50) {
+		if (aniTick >= 60) {
 			aniTick = 0;
 			aniIndex++;
 			if (aniIndex >= GetSpriteAmount(objType)) {
 				aniIndex = 0;
+				if(objType == OCT_L || objType == OCT_R) {
+					doAnimation = false;
+				}
 			}
 		}
 	}
@@ -42,11 +41,14 @@ public class GameObject {
 		aniIndex = 0;
 		aniTick = 0;
 		active = true;
-
-//		if (objType == BARREL || objType == BOX)
-//			doAnimation = false;
-//		else
-		doAnimation = true;
+		if(objType == OCT_L || objType == OCT_R)
+			doAnimation = false;
+		else
+			doAnimation = true;
+	}
+	
+	protected void initHitbox(int width, int height) {
+		hitbox = new Rectangle2D.Float(x, y, (int) (width * Game.SCALE), (int) (height * Game.SCALE));
 	}
 	
 	protected void drawHitbox(Graphics g, int xLvlOffset) {

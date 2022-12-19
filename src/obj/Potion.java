@@ -10,7 +10,7 @@ public class Potion extends GameObject{
 	public Potion(int x, int y, int objType) {
 		super(x, y, objType);
 		doAnimation = true;
-		initHitbox(32, 64);
+		initHitbox(32, 6);
 		xDrawOffset = (int) (7 * Game.SCALE);
 		yDrawOffset = (int) (7 * Game.SCALE);
 

@@ -32,8 +32,6 @@ public class Play extends State implements Statemethods{
 	private int xLvlOffset;
 	private int leftBorder = (int)(0.2 * Game.GAME_WIDTH);
 	private int rightBorder = (int)(0.8 * Game.GAME_WIDTH);
-//	private int lvlTilesWide = LoadSave.getLevelData()[0].length;
-//	private int maxTilesOffset = lvlTilesWide - Game.TILES_IN_WIDTH;
 	private int maxLvlOffsetX;
 	private BufferedImage backgroundImg;
 	
@@ -94,6 +92,7 @@ public class Play extends State implements Statemethods{
 		}
 		else{
 			levelmanager.update();
+			objmanager.update(levelmanager.getCurrentLevel().getLevelData(), player);
 			player.update();
 			enermymanager.update(levelmanager.getCurrentLevel().getLevelData(), player);
 			checkCloseToBorder();

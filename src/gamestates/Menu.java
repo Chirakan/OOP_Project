@@ -5,16 +5,20 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Random;
 
 import Main.Game;
+import obj.Cannon;
 import ui.MenuButton;
 import utilz.LoadSave;
 
 public class Menu extends State implements Statemethods{
 	
 	private MenuButton[] buttons = new MenuButton[3];
-	private BufferedImage backgroundImg;
+	private BufferedImage backgroundImg, bg;
 	private int menuX, menuY, menuWidth, menuHeight;
+	private String[] bgarr = {LoadSave.PLAYING_BG_IMG1, LoadSave.PLAYING_BG_IMG2, LoadSave.PLAYING_BG_IMG3};
 
 	public Menu(Game game) {
 		super(game);
@@ -23,6 +27,8 @@ public class Menu extends State implements Statemethods{
 	}
 	
 	private void loadBackground() {
+		
+		bg = LoadSave.getSpriteAtlas(bgarr[(int)(Math.random()*100%3)]);
 		backgroundImg = LoadSave.getSpriteAtlas(LoadSave.MENU_BACKGROUND);
 		menuWidth = (int) (backgroundImg.getWidth() * Game.SCALE);
 		menuHeight = (int) (backgroundImg.getHeight() * Game.SCALE);
@@ -46,12 +52,17 @@ public class Menu extends State implements Statemethods{
 
 	@Override
 	public void draw(Graphics g) {
+		drawBG(g);
 		g.drawImage(backgroundImg, menuX, menuY, menuWidth, menuHeight, null);
 
 		for (MenuButton mb : buttons)
 			mb.draw(g);
 //		g.setColor(Color.black);
 //		g.drawString("MENU", Game.GAME_WIDTH / 2, 200);
+	}
+	
+	public void drawBG(Graphics g) {
+		g.drawImage(bg, 0 , 0, (int)(1788*1.5), (int)(Game.GAME_HEIGHT), null); // change BG
 	}
 
 	@Override

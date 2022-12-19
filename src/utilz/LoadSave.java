@@ -31,17 +31,19 @@ public class LoadSave {
 	public static final String STATUS_BAR = "bar.png";
 	
 	// UI INTERFACE
-	public static final String MENU_BACKGROUND = "menu_background.png";
+	public static final String MENU_BACKGROUND = "m3.png";
 	public static final String PAUSE_BACKGROUND = "pause_menu.png";
-	public static final String SOUND_BUTTON = "sound_button.png";
-	public static final String URM_BUTTON = "urm_buttons.png";
-	public static final String VOLUME_BUTTONS = "volume_buttons.png";
+	public static final String SOUND_BUTTON = "b3.png";
+	public static final String URM_BUTTON = "b4.png";
+	public static final String VOLUME_BUTTONS = "b2.png";
 	public static final String COMPLETED_IMG = "completed_sprite.png";
 	public static final String MENU_BUTTONS = "button_atlas.png";
-	public static final String DEATH_SCREEN = "death_screen.png";
+	public static final String DEATH_SCREEN = "m1.png";
 	
 	public static final String POTION_ATLAS = "heal.png";
 	public static final String TRAP_ATLAS = "trap.png";
+	public static final String OCTOPUS_ATLAS = "muak.png";
+	public static final String INK_ATLAS = "ink.png";
 	
 	public static BufferedImage getSpriteAtlas(String filename) {
 		BufferedImage img = null;

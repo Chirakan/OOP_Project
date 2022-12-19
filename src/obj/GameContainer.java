@@ -17,9 +17,9 @@ public class GameContainer extends GameObject{
 //			yDrawOffset = (int) (12 * Game.SCALE);
 //
 //		} else {
-//			initHitbox(23, 25);
-//			xDrawOffset = (int) (8 * Game.SCALE);
-//			yDrawOffset = (int) (5 * Game.SCALE);
+		initHitbox(23, 25);
+		xDrawOffset = (int) (8 * Game.SCALE);
+		yDrawOffset = (int) (5 * Game.SCALE);
 //		}
 
 		hitbox.y += yDrawOffset + (int) (Game.SCALE * 2);

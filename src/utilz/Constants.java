@@ -10,6 +10,8 @@ public class Constants {
 	public static class ObjectConstants {
 		public static final int RED_POTION = 0;
 		public static final int SPIKE = 1;
+		public static final int OCT_L = 2;
+		public static final int OCT_R = 3;
 		
 		public static final int RED_POTION_VALUE = 15;
 		
@@ -22,12 +24,19 @@ public class Constants {
 		public static final int SPIKE_HEIGHT_DEFAULT = 64;
 		public static final int SPIKE_WIDTH = (int) (Game.SCALE * SPIKE_WIDTH_DEFAULT);
 		public static final int SPIKE_HEIGHT = (int) (Game.SCALE * SPIKE_HEIGHT_DEFAULT);
+		
+		public static final int OCT_WIDTH_DEFAULT = 60;
+		public static final int OCT_HEIGHT_DEFAULT = 40;
+		public static final int OCT_WIDTH = (int) (OCT_WIDTH_DEFAULT * Game.SCALE);
+		public static final int OCT_HEIGHT = (int) (OCT_HEIGHT_DEFAULT * Game.SCALE);
 
 		public static int GetSpriteAmount(int object_type) {
 			switch (object_type) {
 			case RED_POTION:
 			case SPIKE:
 				return 4;
+			case OCT_L, OCT_R:
+				return 7;
 			}
 			return 1;
 		}

@@ -5,11 +5,13 @@ import static utilz.Constants.EnemyConstants.CRAB;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Float;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import Main.Game;
 import entities.Crab;
+import obj.Cannon;
 import obj.Potion;
 import obj.Spike;
 
@@ -83,12 +85,30 @@ public class HelpMethods {
 		return IsSolid(hitbox.x + xSpeed, hitbox.y + hitbox.height + 1, lvlData);
 	}
 	
-	public static boolean IsAllTilesWalkable(int xStart, int xEnd, int y, int[][] lvlData) {
-		for (int i = 0; i < xEnd - xStart; i++) {
+
+	public static boolean CanCannonSeePlayer(int[][] lvlData, Rectangle2D.Float firstHitbox, Rectangle2D.Float secondHitbox, int yTile) {
+		int firstXTile = (int) (firstHitbox.x / Game.TILES_SIZE);
+		int secondXTile = (int) (secondHitbox.x / Game.TILES_SIZE);
+
+		if (firstXTile > secondXTile)
+			return IsAllTilesClear(secondXTile, firstXTile, yTile, lvlData);
+		else
+			return IsAllTilesClear(firstXTile, secondXTile, yTile, lvlData);
+	}
+	
+	public static boolean IsAllTilesClear(int xStart, int xEnd, int y, int[][] lvlData) {
+		for (int i = 0; i < xEnd - xStart; i++)
 			if (IsTileSolid(xStart + i, y, lvlData))
 				return false;
-			if (!IsTileSolid(xStart + i, y + 1, lvlData))
-				return false;
+		
+		return true;
+	}
+	
+	public static boolean IsAllTilesWalkable(int xStart, int xEnd, int y, int[][] lvlData) {
+		if(IsAllTilesClear(xStart, xEnd, y, lvlData))
+			for (int i = 0; i < xEnd - xStart; i++) { 
+				if (!IsTileSolid(xStart + i, y + 1, lvlData))
+					return false;
 		}
 		return true;
 	}
@@ -136,7 +156,7 @@ public class HelpMethods {
 		for (int j = 0; j < img.getHeight(); j++)
 			for (int i = 0; i < img.getWidth(); i++) {
 				Color color = new Color(img.getRGB(i, j));
-				int value = color.getGreen();
+				int value = color.getBlue();
 				if (value == RED_POTION)
 					list.add(new Potion(i * Game.TILES_SIZE, j * Game.TILES_SIZE, RED_POTION));
 			}
@@ -153,6 +173,20 @@ public class HelpMethods {
 				int value = color.getBlue();
 				if (value == SPIKE)
 					list.add(new Spike(i * Game.TILES_SIZE, j * Game.TILES_SIZE, SPIKE));
+			}
+
+		return list;
+	}
+	
+	public static ArrayList<Cannon> GetCannons(BufferedImage img) {
+		ArrayList<Cannon> list = new ArrayList<>();
+		
+		for (int j = 0; j < img.getHeight(); j++)
+			for (int i = 0; i < img.getWidth(); i++) {
+				Color color = new Color(img.getRGB(i, j));
+				int value = color.getBlue();
+				if (value == OCT_L || value == OCT_R)
+					list.add(new Cannon(i * Game.TILES_SIZE, j * Game.TILES_SIZE, value));
 			}
 
 		return list;
