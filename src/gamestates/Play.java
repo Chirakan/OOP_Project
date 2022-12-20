@@ -147,6 +147,7 @@ public class Play extends State implements Statemethods{
 		lvlCompleted = false;
 		player.resetAll();
 		enermymanager.resetAllEnemies();
+		objmanager.resetAllObjects();
 	}
 	
 	public void checkEnemyHit(Rectangle2D.Float attackBox) {
