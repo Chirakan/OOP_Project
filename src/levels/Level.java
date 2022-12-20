@@ -32,7 +32,6 @@ public class Level {
 		createPotions();
 		createSpikes();
 		createCannons();
-//		createBG();
 		calcLvlOffsets();
 	}
 	
@@ -47,11 +46,6 @@ public class Level {
 
 	private void createPotions() {
 		potions = HelpMethods.GetPotions(img);
-	}
-
-	private void createBG() {
-		
-		
 	}
 
 	private void calcLvlOffsets() {

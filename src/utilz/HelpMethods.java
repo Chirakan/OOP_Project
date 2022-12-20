@@ -13,6 +13,7 @@ import Main.Game;
 import entities.Crab;
 import obj.Cannon;
 import obj.Potion;
+import obj.Projectile;
 import obj.Spike;
 
 import static utilz.Constants.ObjectConstants.*;
@@ -38,6 +39,11 @@ public class HelpMethods {
 		float yIndex = y / Game.TILES_SIZE;
 
 		return IsTileSolid((int)xIndex, (int)yIndex, lvlData);
+	}
+
+	public static boolean IsProjectileHittingLevel(Projectile p, int[][] lvlData) {
+		return IsSolid(p.getHitbox().x + p.getHitbox().width / 2, p.getHitbox().y + p.getHitbox().height / 2, lvlData);
+
 	}
 	
 	public static boolean IsTileSolid(int xTile, int yTile, int[][] lvlData) {
