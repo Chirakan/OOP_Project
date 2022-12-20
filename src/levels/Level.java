@@ -8,6 +8,7 @@ import entities.Crab;
 import obj.Cannon;
 import obj.Potion;
 import obj.Spike;
+import obj.Sign;
 import utilz.HelpMethods;
 
 import static utilz.HelpMethods.GetLevelData;
@@ -20,6 +21,7 @@ public class Level {
 	private ArrayList<Potion> potions;
 	private ArrayList<Spike> spikes;
 	private ArrayList<Cannon> cannons;
+	private ArrayList<Sign> sign;
 	private int lvlTilesWide;
 	private int maxTilesOffset;
 	private int maxLvlOffsetX;
@@ -32,6 +34,7 @@ public class Level {
 		createPotions();
 		createSpikes();
 		createCannons();
+		createSign();
 		calcLvlOffsets();
 	}
 	
@@ -43,7 +46,10 @@ public class Level {
 	private void createSpikes() {
 		spikes = HelpMethods.GetSpikes(img);
 	}
-
+	private void createSign() {
+		sign = HelpMethods.GetSign(img);
+		
+	}
 	private void createPotions() {
 		potions = HelpMethods.GetPotions(img);
 	}
@@ -88,5 +94,8 @@ public class Level {
 	
 	public ArrayList<Cannon> getCannons() {
 		return cannons;
+	}
+	public ArrayList<Sign> getSign() {
+		return sign;
 	}
 }

@@ -21,7 +21,9 @@ public class Constants {
 		public static final int SPIKE = 1;
 		public static final int OCT_L = 2;
 		public static final int OCT_R = 3;
-		
+		public static final int SIGN = 255;
+
+
 		public static final int RED_POTION_VALUE = 15;
 		
 		public static final int POTION_WIDTH_DEFAULT = 64;
@@ -39,6 +41,10 @@ public class Constants {
 		public static final int OCT_WIDTH = (int) (OCT_WIDTH_DEFAULT * Game.SCALE);
 		public static final int OCT_HEIGHT = (int) (OCT_HEIGHT_DEFAULT * Game.SCALE);
 
+		public static final int SIGN_WIDTH_DEFAULT = 60;
+		public static final int SIGN_HEIGHT_DEFAULT = 40;
+		public static final int SIGN_WIDTH = (int) (SIGN_WIDTH_DEFAULT * Game.SCALE);
+		public static final int SIGN_HEIGHT = (int) (SIGN_HEIGHT_DEFAULT * Game.SCALE);
 		public static int GetSpriteAmount(int object_type) {
 			switch (object_type) {
 			case RED_POTION:

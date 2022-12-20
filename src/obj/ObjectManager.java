@@ -18,10 +18,11 @@ public class ObjectManager {
 
 	private Play playing;
 	private BufferedImage[] potionImgs, spikeImgs, cannonImgs;
-	private BufferedImage cannonBallImg;
+	private BufferedImage cannonBallImg, signImg;
 	private ArrayList<Potion> potions;
 	private ArrayList<Spike> spikes;
 	private ArrayList<Cannon> cannons;
+	private ArrayList<Sign> sign;
 	private ArrayList<Projectile> projectiles = new ArrayList<>();
 	
 	public ObjectManager(Play playing) {
@@ -34,7 +35,13 @@ public class ObjectManager {
 			if (s.getHitbox().intersects(p.getHitbox()))
 				p.kill();
 	}
-	
+	public void checkSignTouched(Rectangle2D.Float hitbox) {
+		for (Sign s : sign)
+			if (hitbox.intersects(s.getHitbox())) {
+				playing.setLvlCompleted(true);
+			}
+			
+	}
 	public void checkObjectTouched(Rectangle2D.Float hitbox) {
 		for (Potion p : potions)
 			if (p.isActive()) {
@@ -54,6 +61,7 @@ public class ObjectManager {
 		potions = new ArrayList<>(newLevel.getPotions());
 		spikes = newLevel.getSpikes();
 		cannons = newLevel.getCannons();
+		sign = newLevel.getSign();
 		projectiles.clear();
 	}
 
@@ -74,6 +82,7 @@ public class ObjectManager {
 			cannonImgs[i] = cannonSprite.getSubimage(64 * i, 0, 64, 64);
 
 		cannonBallImg = LoadSave.getSpriteAtlas(LoadSave.INK_ATLAS);
+		signImg = LoadSave.getSpriteAtlas(LoadSave.SIGN);
 	}
 	
 	public void update(int[][] lvlData, Player player) {
@@ -142,6 +151,7 @@ public class ObjectManager {
 		drawPotions(g, xLvlOffset);
 		drawTrap(g, xLvlOffset);
 		drawCannons(g, xLvlOffset);
+		drawSign(g, xLvlOffset);
 		drawProjectiles(g, xLvlOffset);
 	}
 
@@ -151,7 +161,14 @@ public class ObjectManager {
 				g.drawImage(cannonBallImg, (int) (p.getHitbox().x - xLvlOffset), (int) (p.getHitbox().y), CANNON_BALL_WIDTH, CANNON_BALL_HEIGHT, null);
 		
 	}
-
+	private void drawSign(Graphics g, int xLvlOffset) {
+		for(Sign s : sign) {
+			g.drawImage(signImg, (int) (s.getHitbox().x - s.getxDrawOffset() - xLvlOffset), 
+					(int) (s.getHitbox().y - s.getyDrawOffset()), 
+					(int)(SIGN_WIDTH * 1), 
+					(int)(SIGN_HEIGHT * 1),null);
+		}
+	}
 	private void drawCannons(Graphics g, int xLvlOffset) {
 		for(Cannon c : cannons) {
 			int x = (int)(c.getHitbox().x - xLvlOffset);

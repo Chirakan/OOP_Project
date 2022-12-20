@@ -155,12 +155,15 @@ public class Play extends State implements Statemethods{
 	
 	public void checkPotionTouched(Rectangle2D.Float hitbox) {
 		objmanager.checkObjectTouched(hitbox);
+		
 	}
-	
+	public void checkSignTouched(Rectangle2D.Float hitbox){
+		objmanager.checkSignTouched(hitbox);
+	}
 	public void checkSpikesTouched(Player p) {
 		objmanager.checkSpikesTouched(p);
 	}
-
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (!gameOver)

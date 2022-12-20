@@ -13,6 +13,7 @@ import Main.Game;
 import entities.Crab;
 import obj.Cannon;
 import obj.Potion;
+import obj.Sign;
 import obj.Projectile;
 import obj.Spike;
 
@@ -193,6 +194,18 @@ public class HelpMethods {
 				int value = color.getBlue();
 				if (value == OCT_L || value == OCT_R)
 					list.add(new Cannon(i * Game.TILES_SIZE, j * Game.TILES_SIZE, value));
+			}
+
+		return list;
+	}
+	public static ArrayList<Sign> GetSign(BufferedImage img) {
+		ArrayList<Sign> list = new ArrayList<>();
+		for (int j = 0; j < img.getHeight(); j++)
+			for (int i = 0; i < img.getWidth(); i++) {
+				Color color = new Color(img.getRGB(i, j));
+				int value = color.getBlue();
+				if (value == SIGN)
+					list.add(new Sign(i * Game.TILES_SIZE, j * Game.TILES_SIZE, SPIKE));
 			}
 
 		return list;

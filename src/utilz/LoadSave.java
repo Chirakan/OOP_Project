@@ -45,6 +45,7 @@ public class LoadSave {
 	public static final String TRAP_ATLAS = "trap.png";
 	public static final String OCTOPUS_ATLAS = "muak.png";
 	public static final String INK_ATLAS = "ink.png";
+	public static final String SIGN = "sign.png";
 	
 	public static BufferedImage getSpriteAtlas(String filename) {
 		BufferedImage img = null;
