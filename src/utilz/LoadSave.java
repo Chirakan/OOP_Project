@@ -1,19 +1,13 @@
 package utilz;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-
-import Main.Game;
-import entities.Crab;
-import static utilz.Constants.EnemyConstants.*;
 
 public class LoadSave {
 	public static String PLAYER_ATLAS = "aek.png";

@@ -8,9 +8,7 @@ import gamestates.Gamestate;
 import gamestates.Play;
 import Main.Game;
 import utilz.LoadSave;
-import static utilz.Constants.UI.PauseButton.*;
 import static utilz.Constants.UI.URMButton.*;
-import static utilz.Constants.UI.VolumeButtons.*;
 
 public class PauseOverlay {
 

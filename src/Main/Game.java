@@ -10,8 +10,6 @@ import gamestates.Play;
 import gamestates.Story;
 import ui.AudioOptions;
 
-import utilz.LoadSave;
-
 public class Game implements Runnable{
 	private GameWindow window;
 	private GamePanel p;

@@ -1,15 +1,11 @@
 package gamestates;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Random;
 
 import Main.Game;
-import obj.Cannon;
 import ui.MenuButton;
 import utilz.LoadSave;
 

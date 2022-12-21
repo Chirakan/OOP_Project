@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import Main.Game;
 import gamestates.Gamestate;
-import gamestates.Story;
 import utilz.LoadSave;
 
 public class LevelManager {
@@ -14,7 +13,6 @@ public class LevelManager {
 	private BufferedImage[] levelSprite;
 	private ArrayList<Level> levels;
 	private int lvlIndex = 0;
-	private Story story;
 	public LevelManager(Game game) {
 		this.game = game;
 		importOutsideSprites();

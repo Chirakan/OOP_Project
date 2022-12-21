@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.util.Random;
 
 import Main.Game;
 import audio.AudioPlayer;
@@ -17,7 +16,6 @@ import obj.ObjectManager;
 import ui.GameOverOverlay;
 import ui.LevelCompletedOverlay;
 import ui.PauseOverlay;
-import static utilz.LoadSave.*;
 import utilz.LoadSave;
 
 public class Play extends State implements Statemethods{
@@ -29,7 +27,6 @@ public class Play extends State implements Statemethods{
 	private PauseOverlay pauseOverlay;
 	private GameOverOverlay gameOverOverlay;
 	private LevelCompletedOverlay levelCompletedOverlay;
-	private Story story;
 	private boolean paused = false;
 	private int xLvlOffset;
 	private int leftBorder = (int)(0.2 * Game.GAME_WIDTH);

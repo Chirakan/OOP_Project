@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import Main.Game;
-import audio.AudioPlayer;
 import entities.Player;
 import gamestates.Play;
 import levels.Level;
