@@ -28,7 +28,7 @@ public class AudioPlayer {
 
 	private Clip[] songs, effects; //Clip เป็นตัวจัดการเกี่ยวกับเสีบง หยุด เล่น ฯลฯ ใช้ได้แค่ไฟล์ .wav
 	private int currentSongId;
-	private float volume = 0.5f;
+	private float volume = 0.75f;
 	private boolean songMute, effectMute;
 	private Random rand = new Random();
 	

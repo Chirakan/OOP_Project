@@ -27,6 +27,9 @@ public class Keyboardinputs implements KeyListener{
 		case PLAYING:
 			p.getGame().getPlay().keyPressed(e);
 			break;
+		case STORY:
+			p.getGame().getStory().keyPressed(e);
+			break;
 		default:
 			break;
 		}

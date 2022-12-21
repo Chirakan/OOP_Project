@@ -47,6 +47,9 @@ public class LoadSave {
 	public static final String INK_ATLAS = "ink.png";
 	public static final String SIGN = "sign.png";
 	
+	public static final String STORY_1 = "story1.png";
+	public static final String STORY_2 = "story2.png";
+	
 	public static BufferedImage getSpriteAtlas(String filename) {
 		BufferedImage img = null;
 		try(InputStream is = LoadSave.class.getResourceAsStream("/"+filename)) {

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import Main.Game;
 import gamestates.Gamestate;
+import gamestates.Story;
 import utilz.LoadSave;
 
 public class LevelManager {
@@ -13,6 +14,7 @@ public class LevelManager {
 	private BufferedImage[] levelSprite;
 	private ArrayList<Level> levels;
 	private int lvlIndex = 0;
+	private Story story;
 	public LevelManager(Game game) {
 		this.game = game;
 		importOutsideSprites();
@@ -23,8 +25,7 @@ public class LevelManager {
 		lvlIndex++;
 		if (lvlIndex >= levels.size()) {
 			lvlIndex = 0;
-			System.out.println("No more levels! Game Completed!");
-			Gamestate.state = Gamestate.MENU;
+			Gamestate.state = Gamestate.STORY;
 		}
 
 		Level newLevel = levels.get(lvlIndex);

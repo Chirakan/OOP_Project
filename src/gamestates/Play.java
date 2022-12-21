@@ -51,14 +51,14 @@ public class Play extends State implements Statemethods{
 	public void loadNextLevel() {
 		resetAll();
 		levelmanager.loadNextLevel();
-		if(levelmanager.getLvlIndex() == 0) {
-			backgroundImg = LoadSave.getSpriteAtlas(LoadSave.PLAYING_BG_IMG1);
-		}
 		if(levelmanager.getLvlIndex() == 1) {
 			backgroundImg = LoadSave.getSpriteAtlas(LoadSave.PLAYING_BG_IMG2);
 		}
 		if(levelmanager.getLvlIndex() == 2) {
 			backgroundImg = LoadSave.getSpriteAtlas(LoadSave.PLAYING_BG_IMG3);
+		}
+		if(levelmanager.getLvlIndex() == 0) {
+			backgroundImg = LoadSave.getSpriteAtlas(LoadSave.PLAYING_BG_IMG1);
 		}
 //		player.setSpawn(levelmanager.getCurrentLevel().getPlayerSpawn());
 	}
@@ -292,7 +292,7 @@ public class Play extends State implements Statemethods{
 	public void setLvlCompleted(boolean lvlCompleted) {
 		this.lvlCompleted = lvlCompleted;
 		if(lvlCompleted)
-			getGame().getAudioPlayer().playEffect(AudioPlayer.LVL_COMPLETED);
+				getGame().getAudioPlayer().playEffect(AudioPlayer.LVL_COMPLETED);
 	}
 
 	public void setGameOver(boolean gameOver) {

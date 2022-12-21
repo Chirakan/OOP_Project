@@ -7,6 +7,7 @@ import gamestates.GameOption;
 import gamestates.Gamestate;
 import gamestates.Menu;
 import gamestates.Play;
+import gamestates.Story;
 import ui.AudioOptions;
 
 import utilz.LoadSave;
@@ -21,6 +22,7 @@ public class Game implements Runnable{
 	private Play playing;
 	private Menu menu;
 	private GameOption option;
+	private Story story;
 	private AudioOptions audioOptions;
 	private AudioPlayer audioPlayer;
 
@@ -57,6 +59,7 @@ public class Game implements Runnable{
 		menu = new Menu(this);
 		playing = new Play(this);
 		option = new GameOption(this);
+		story = new Story(this);
 	}
 	
 	private void startGameLoop() {
@@ -71,6 +74,8 @@ public class Game implements Runnable{
 				break;
 			case PLAYING:
 				playing.update();
+				break;
+			case STORY:
 				break;
 			case OPTIONS:
 				option.update();
@@ -92,6 +97,9 @@ public class Game implements Runnable{
 				break;
 			case OPTIONS:
 				option.draw(g);
+				break;
+			case STORY:
+				story.draw(g);
 				break;
 			default:
 				break;
@@ -163,6 +171,9 @@ public class Game implements Runnable{
 	
 	public AudioPlayer getAudioPlayer() {
 		return audioPlayer;
+	}
+	public Story getStory() {
+		return story;
 	}
 }
 
