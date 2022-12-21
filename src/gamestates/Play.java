@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import Main.Game;
+import audio.AudioPlayer;
 import entities.EnemyManager;
 import entities.Player;
 import levels.LevelManager;
@@ -287,6 +288,8 @@ public class Play extends State implements Statemethods{
 
 	public void setLvlCompleted(boolean lvlCompleted) {
 		this.lvlCompleted = lvlCompleted;
+		if(lvlCompleted)
+			getGame().getAudioPlayer().playEffect(AudioPlayer.LVL_COMPLETED);
 	}
 
 	public void setGameOver(boolean gameOver) {
