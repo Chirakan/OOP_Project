@@ -71,6 +71,7 @@ public class Game implements Runnable{
 		switch(Gamestate.state) {
 			case MENU:
 				menu.update();
+				story.setIndex(0);
 				break;
 			case PLAYING:
 				playing.update();
