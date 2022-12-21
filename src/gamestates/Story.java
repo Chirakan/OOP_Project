@@ -15,6 +15,7 @@ public class Story extends State implements Statemethods{
 
 	public Story(Game game) {
 		super(game);
+		
 		bg = new BufferedImage[2];
 		bg[0] = LoadSave.getSpriteAtlas(LoadSave.STORY_1);
 		bg[1] = LoadSave.getSpriteAtlas(LoadSave.STORY_2);

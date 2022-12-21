@@ -29,6 +29,7 @@ public class Play extends State implements Statemethods{
 	private PauseOverlay pauseOverlay;
 	private GameOverOverlay gameOverOverlay;
 	private LevelCompletedOverlay levelCompletedOverlay;
+	private Story story;
 	private boolean paused = false;
 	private int xLvlOffset;
 	private int leftBorder = (int)(0.2 * Game.GAME_WIDTH);
@@ -41,15 +42,19 @@ public class Play extends State implements Statemethods{
 	private boolean playerDying = false;
 	
 	public Play(Game game) {
+		
 		super(game);
+		
 		initClasses();
 		
 		calcLvlOffset();
 		loadStartLevel();
+		
 	}
 
 	public void loadNextLevel() {
 		resetAll();
+		
 		levelmanager.loadNextLevel();
 		if(levelmanager.getLvlIndex() == 1) {
 			backgroundImg = LoadSave.getSpriteAtlas(LoadSave.PLAYING_BG_IMG2);
