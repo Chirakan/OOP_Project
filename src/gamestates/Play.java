@@ -51,6 +51,9 @@ public class Play extends State implements Statemethods{
 	public void loadNextLevel() {
 		resetAll();
 		levelmanager.loadNextLevel();
+		if(levelmanager.getLvlIndex() == 0) {
+			backgroundImg = LoadSave.getSpriteAtlas(LoadSave.PLAYING_BG_IMG1);
+		}
 		if(levelmanager.getLvlIndex() == 1) {
 			backgroundImg = LoadSave.getSpriteAtlas(LoadSave.PLAYING_BG_IMG2);
 		}
