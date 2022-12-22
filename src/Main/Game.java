@@ -14,8 +14,8 @@ public class Game implements Runnable{
 	private GameWindow window;
 	private GamePanel p;
 	private Thread gameThread;
-	private final int FPS_SET = 120;
-	private final int UPS_SET = 200;
+	private final int FPS_SET = 120; // Frame Per Sec
+	private final int UPS_SET = 200; // Update Per Sec
 	
 	private Play playing;
 	private Menu menu;
@@ -26,7 +26,7 @@ public class Game implements Runnable{
 
 
 	public final static int TILES_DEFAULT_SIZE = 32;
-	public final static float SCALE = 1.75f;
+	public final static float SCALE = 1.75f; //ขนาดเกม
 	public final static int TILES_IN_WIDTH = 26;
 	public final static int TILES_IN_HEIGHT = 14;
 	public final static int TILES_SIZE = (int)(TILES_DEFAULT_SIZE * SCALE); //32
@@ -51,7 +51,7 @@ public class Game implements Runnable{
 		startGameLoop();
 	}
 	
-	private void initClasses() {
+	private void initClasses() { //สร้าง obj ให้กับตัวแปรต่างๆ
 		audioOptions = new AudioOptions(this);
 		audioPlayer = new AudioPlayer();
 		menu = new Menu(this);
@@ -138,7 +138,7 @@ public class Game implements Runnable{
 				deltaF--;
 			}
 
-			if (System.currentTimeMillis() - lastCheck >= 1000) {
+			if (System.currentTimeMillis() - lastCheck >= 1000) { //เวลามากกว่า 1000millsec เซ็ทค่าใหม่
 				lastCheck = System.currentTimeMillis();
 				System.out.println("FPS: " + frames + " | UPS: " + updates);
 				frames = 0;

@@ -3,9 +3,7 @@ package utilz;
 import static utilz.Constants.EnemyConstants.CRAB;
 
 import java.awt.Color;
-import java.awt.Point;
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.Rectangle2D.Float;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -54,7 +52,7 @@ public class HelpMethods {
 			return true;
 		return false;
 	}
-	
+
 	public static float GetEntityXPosNextToWall(Rectangle2D.Float hitbox, float xSpeed) {
 		int currentTile = (int) (hitbox.x / Game.TILES_SIZE);
 		if (xSpeed > 0) {
@@ -155,7 +153,6 @@ public class HelpMethods {
 					list.add(new Crab(i * Game.TILES_SIZE, j * Game.TILES_SIZE));
 			}
 		return list;
-
 	}
 	
 	public static ArrayList<Potion> GetPotions(BufferedImage img) {

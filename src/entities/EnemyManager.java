@@ -30,7 +30,6 @@ public class EnemyManager {
 			if(c.isActive()) {
 				c.update(lvlData, player);
 			}
-		
 	}
 	
 	public void draw(Graphics g, int xLvlOffset) {

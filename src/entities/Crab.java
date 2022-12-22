@@ -67,7 +67,6 @@ public class Crab extends Enemy{
 				break;
 			}
 		}
-		
 	}
 	
 	public void drawAttackBox(Graphics g, int xLvlOffset) {

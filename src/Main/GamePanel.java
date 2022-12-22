@@ -34,7 +34,7 @@ public class GamePanel extends JPanel{
 	public void paintComponent(Graphics g) { //เอาภาพที่นำมาใช้นำมาแสดงบน Panel
 		super.paintComponent(g);
 
-		game.render(g);
+		game.render(g); //วาดบน Panel โดยดึง method จาก Game
 	}
 	
 	public Game getGame() {

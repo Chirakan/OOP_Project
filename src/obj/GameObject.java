@@ -1,7 +1,6 @@
 package obj;
 
 import static utilz.Constants.ObjectConstants.*;
-import static utilz.Constants.ANI_SPEED;
 
 import java.awt.Color;
 import java.awt.Graphics;
